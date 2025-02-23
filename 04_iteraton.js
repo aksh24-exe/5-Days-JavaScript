@@ -31,8 +31,63 @@ let userActivity = [
 ];
 // find most active user
 
-let mostActiveUser = userActivity.reduce((maxUser, user) => 
-    user.activityCount > maxUser.activityCount ? user : maxUser
-)
+let mostActiveUser = userActivity.reduce((maxUser, user) =>
+  user.activityCount > maxUser.activityCount ? user : maxUser
+);
 // console.log(mostActiveUser);
 
+let expenses = [
+  { description: "Groceries", amount: 50, category: "Food" },
+  { description: "Electricity Bill", amount: 100, category: "Utilities" },
+  { description: "Dinner", amount: 30, category: "Food" },
+  { description: "Internet Bill", amount: 50, category: "Utilities" },
+];
+
+let expenseReport = expenses.reduce(
+  (report, expense) => {
+    report[expense.category] += expense.amount;
+    report[expense.category] = (report[expense.category] || 0) + expense.amount;
+    return report;
+  },
+  { Food: 0, Utilities: 0 }
+);
+
+// console.log("Expense Report", expenseReport);
+
+let tasks = [
+  { description: "Write report", completed: false, priority: 2 },
+
+  { description: "Send email", completed: true, priority: 3 },
+
+  { description: "Prepare presentation", completed: false, priority: 1 },
+];
+
+let pendingSortedTasks = tasks
+  .filter((task) => !task.completed)
+  .sort((a, b) => a.priority - b.priority);
+// console.log(pendingSortedTasks);
+
+let movieRatings = [
+  { title: "Movie A", ratings: [4, 5, 3] },
+  { title: "Movie B", ratings: [5, 5, 4] },
+  { title: "Movie C", ratings: [3, 4, 2] },
+];
+
+let averageRatings = movieRatings.map((movieRating) => {
+  let total = movieRating.ratings.reduce((sum, rating)=> sum + rating,0)
+  let average = total / movieRating.ratings.length  
+  
+  return {title: movieRating.title, average: average.toFixed(2)};
+}) 
+
+// let averageRatings = movieRatings.map((movieRating) => {
+//   let average =0
+//   for(let i=0;i<movieRating.ratings.length;i++){
+//       average = average + movieRating.ratings[i];
+
+//   }
+//   average = average / movieRating.ratings.length
+//   return {title: movieRating.title, average: average.toFixed(2)};
+// }) 
+
+console.log(averageRatings);
