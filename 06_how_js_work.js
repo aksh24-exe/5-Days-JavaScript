@@ -56,3 +56,4 @@ console.log('Age is ', Age);
 
 //ReferenceError: Age is not defined
 // Cannot access 'Age' before initialization
+
